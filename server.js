@@ -5,12 +5,7 @@ function start(route, handle) {
 function onRequest(request, response) {
   var pathname = url.parse(request.url).pathname;
   console.log('A request for ' + pathname + 'was received.');
-
-  route(handle, pathname);
-
-  response.writeHead(200, {'Content-Type': 'text/plain'});
-  response.write('Hello World');
-  response.end();
+  route(handle, pathname, response, request);
 }
 
 http.createServer(onRequest).listen(8888);
@@ -18,5 +13,3 @@ console.log('Server has started.');
 }
 
 exports.start = start;
-
-//on page 25 of pdf
